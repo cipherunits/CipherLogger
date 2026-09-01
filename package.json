@@ -1,0 +1,63 @@
+{
+  "name": "cipher-logger",
+  "version": "0.0.1",
+  "description": "See every request. Capture every error. Understand your application.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "cipher-logger": "./dist/bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cipherunits/CipherLogger.git"
+  },
+  "author": "CipherUnits",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/cipherunits/CipherLogger/issues"
+  },
+  "homepage": "https://github.com/cipherunits/CipherLogger#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "logger",
+    "logging",
+    "log",
+    "logging-library",
+    "node-logger",
+    "nodejs-logger",
+    "javascript-logger",
+    "typescript-logger",
+    "http-logger",
+    "request-logger",
+    "error-logger",
+    "request-logging",
+    "error-logging",
+    "monitoring",
+    "observability",
+    "nextjs",
+    "nextjs-logger",
+    "nextjs-middleware",
+    "express",
+    "express-logger",
+    "cli",
+    "dashboard",
+    "cipherlogger",
+    "cipherunits"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3"
+  }
+}

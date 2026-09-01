@@ -1,0 +1,23 @@
+# Source & tooling (published package only ships dist + docs via "files")
+src/
+tsconfig.json
+tsup.config.ts
+pnpm-lock.yaml
+pnpm-workspace.yaml
+CipherScope_Roadmap.md
+test/
+
+# Local artifacts
+node_modules/
+*.tsbuildinfo
+*.tgz
+.env
+.env.local
+.env.*.local
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+Backups
