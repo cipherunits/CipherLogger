@@ -383,16 +383,8 @@ Contributions are welcome and appreciated.
 
 ## License
 
-This project is licensed under the [BSD 3-Clause License](LICENSE).
-
-```
-Copyright (c) 2026, Cipher Logger
-```
-
-Free to use, modify, and distribute — provided the copyright notice and license terms are preserved. See [LICENSE](LICENSE) for full details.
-
----
+[MIT](./LICENSE) © Cipher Unit
 
 <p align="center">
-  Built with ❤️ by <a href="https://github.com/cipherunits">CipherUnits</a>
+  <i>Built by <a href="https://cipherunit.xyz">Cipher Unit</a></i>
 </p>
