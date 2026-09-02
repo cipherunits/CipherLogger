@@ -12,6 +12,7 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,9 +25,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           registry-url: https://registry.npmjs.org
           cache: pnpm
+
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Check versions
+        run: |
+          echo "Node: $(node --version)"
+          echo "npm: $(npm --version)"
+          echo "pnpm: $(pnpm --version)"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -39,9 +49,12 @@ jobs:
           NAME=$(node -p "require('./package.json').name")
           VERSION=$(node -p "require('./package.json').version")
 
+          echo "Package: ${NAME}"
+          echo "Version: ${VERSION}"
+
           if npm view "${NAME}@${VERSION}" version >/dev/null 2>&1; then
             echo "Skipping publish: ${NAME}@${VERSION} already exists on npm"
             exit 0
           fi
 
-          npm publish --access public --provenance
+          npm publish --access public
