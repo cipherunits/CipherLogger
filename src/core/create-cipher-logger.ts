@@ -1,5 +1,5 @@
-import { createExpressMiddleware } from "../express/middleware";
-import { createNextMiddleware } from "../next/middleware";
+import { createExpressMiddleware } from "../adapters/express/middleware";
+import { createNextMiddleware } from "../adapters/next/middleware";
 import { Logger } from "./logger";
 import { buildRequestLog, resolveFieldConfig } from "./build-request-log";
 import type {
@@ -7,8 +7,8 @@ import type {
   RequestLog,
   RequestLogInput,
 } from "./types";
-import type { ExpressMiddleware } from "../express/middleware";
-import type { NextMiddleware } from "../next/middleware";
+import type { ExpressMiddleware } from "../adapters/express/middleware";
+import type { NextMiddleware } from "../adapters/next/middleware";
 
 export interface CipherLogger {
   logRequest(input: RequestLogInput): RequestLog;
