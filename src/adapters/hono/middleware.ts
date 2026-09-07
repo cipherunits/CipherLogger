@@ -8,7 +8,9 @@ export type HonoMiddleware = (
 ) => Response | Promise<Response>;
 
 function getHeader(request: any, name: string): string | undefined {
-  if (!request) return undefined;
+  if (!request) {
+    return undefined;
+  }
 
   if (typeof request.header === "function") {
     return request.header(name) ?? undefined;
@@ -19,6 +21,10 @@ function getHeader(request: any, name: string): string | undefined {
   }
 
   return undefined;
+}
+
+function hasHeader(request: any, name: string): boolean {
+  return Boolean(getHeader(request, name));
 }
 
 function parseQuery(urlString: string): Record<string, string> | undefined {
@@ -55,7 +61,9 @@ export function createHonoMiddleware(cipher: CipherLogger): HonoMiddleware {
     }
 
     const xfwd = getHeader(req, "x-forwarded-for");
-    const ip = xfwd ? String(xfwd).split(",")[0].trim() : getHeader(req, "x-real-ip") ?? undefined;
+    const ip = hasHeader(req, "x-forwarded-for")
+      ? String(xfwd).split(",")[0].trim()
+      : getHeader(req, "x-real-ip") ?? undefined;
 
     cipher.logRequest({
       method: req?.method,

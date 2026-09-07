@@ -1,9 +1,9 @@
 name: Publish to npm
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Pre-publish validation"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -11,11 +11,14 @@ permissions:
 
 jobs:
   publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -40,9 +43,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Build
-        run: pnpm run build
 
       - name: Publish
         run: |
