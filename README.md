@@ -1,4 +1,14 @@
-# Cipher Logger
+<p align="center">
+  <img
+    src="./assets/cipherlogger_logo_mono.png"
+    alt="Fusion Snippet"
+    width="120"
+    style="border-radius: 18px;"
+  />
+</p>
+
+<h1 align="center">Cipher Logger</h1>
+
 
 <p align="center">
   <strong>See every request. Capture every error. Understand your application.</strong>
@@ -468,6 +478,6 @@ Contributions are welcome and appreciated.
 
 [MIT](./LICENSE) © Cipher Unit
 
-<p align="center">
-  <i>Built by <a href="https://cipherunit.xyz">Cipher Unit</a></i>
+<p align="center" style="margin-top: 100px;">
+  <b><i>Made with ❤️  for developers by CipherUnit</i></b>
 </p>
