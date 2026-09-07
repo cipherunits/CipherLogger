@@ -39,6 +39,10 @@
 - **Express middleware** — records real `status` and `duration` after the response finishes
 - **Next.js middleware** — drop-in support for `middleware.ts`
 - **Zero heavy dependencies** — only `express` or `next` as optional peer dependencies
+ - **Fastify middleware** — lightweight hook-compatible middleware for Fastify
+ - **NestJS middleware** — Express-compatible middleware for Nest apps
+ - **Hono middleware** — edge-friendly middleware for Hono apps
+ - **Zero heavy dependencies** — only framework peers are optional
 - **Node.js 18+** compatible
 
 ---
@@ -63,6 +67,15 @@ npm install express
 
 # Next.js
 npm install next
+
+# Fastify
+npm install fastify
+
+# NestJS (core packages)
+npm install @nestjs/core @nestjs/common
+
+# Hono
+npm install hono
 ```
 
 ---
@@ -222,6 +235,73 @@ export const config = {
 
 ---
 
+## Fastify
+
+Register the Fastify-compatible middleware returned by `cipher.fastify()` using `addHook`:
+
+```typescript
+import fastify from "fastify";
+import { createCipherLogger } from "cipher-logger";
+
+const app = fastify();
+
+const cipher = createCipherLogger({
+  fields: { ip: true, userAgent: true, query: true },
+  level: "info",
+});
+
+// Register before your routes
+app.addHook("onRequest", cipher.fastify());
+
+app.get("/", async () => ({ hello: "world" }));
+
+app.listen({ port: 3000 });
+```
+
+## NestJS
+
+Use the Express-compatible middleware in Nest's runtime (works when Nest is using the Express platform):
+
+```typescript
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { createCipherLogger } from "cipher-logger";
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  const cipher = createCipherLogger({ fields: { ip: true, userAgent: true } });
+
+  // Mount as global middleware
+  app.use(cipher.nest());
+
+  await app.listen(3000);
+}
+
+bootstrap();
+```
+
+## Hono
+
+Mount the Hono middleware using `app.use` (works on edge and Node runtimes):
+
+```typescript
+import { Hono } from "hono";
+import { createCipherLogger } from "cipher-logger";
+
+const app = new Hono();
+
+const cipher = createCipherLogger({ fields: { ip: true, userAgent: true } });
+
+// Mount for all routes
+app.use("*", cipher.hono());
+
+app.get("/", (c) => c.text("ok"));
+
+app.listen({ port: 3000 });
+```
+
+
 ## Log Schema
 
 ### Required Fields
@@ -301,6 +381,9 @@ import type {
   LoggerOptions,
   ExpressMiddleware,
   NextMiddleware,
+  FastifyMiddleware,
+  NestMiddleware,
+  HonoMiddleware,
 } from "cipher-logger";
 ```
 

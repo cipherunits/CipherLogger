@@ -1,5 +1,8 @@
 import { createExpressMiddleware } from "../adapters/express/middleware";
 import { createNextMiddleware } from "../adapters/next/middleware";
+import { createFastifyMiddleware } from "../adapters/fastify/middleware";
+import { createNestMiddleware } from "../adapters/nest/middleware";
+import { createHonoMiddleware } from "../adapters/hono/middleware";
 import { Logger } from "./logger";
 import { buildRequestLog, resolveFieldConfig } from "./build-request-log";
 import type {
@@ -9,11 +12,17 @@ import type {
 } from "./types";
 import type { ExpressMiddleware } from "../adapters/express/middleware";
 import type { NextMiddleware } from "../adapters/next/middleware";
+import type { FastifyMiddleware } from "../adapters/fastify/middleware";
+import type { NestMiddleware } from "../adapters/nest/middleware";
+import type { HonoMiddleware } from "../adapters/hono/middleware";
 
 export interface CipherLogger {
   logRequest(input: RequestLogInput): RequestLog;
   express(): ExpressMiddleware;
   next(): NextMiddleware;
+  fastify(): FastifyMiddleware;
+  nest(): NestMiddleware;
+  hono(): HonoMiddleware;
 }
 
 export function createCipherLogger(
@@ -38,6 +47,15 @@ export function createCipherLogger(
 
     next() {
       return createNextMiddleware(cipherLogger);
+    },
+    fastify() {
+      return createFastifyMiddleware(cipherLogger);
+    },
+    nest() {
+      return createNestMiddleware(cipherLogger);
+    },
+    hono() {
+      return createHonoMiddleware(cipherLogger);
     },
   };
 
