@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-import type { CipherLogger } from "../core/create-cipher-logger";
+import type { CipherLogger } from "../../core/create-cipher-logger";
 
 export type NextMiddleware = (
   request: NextRequest,

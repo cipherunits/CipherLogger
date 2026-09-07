@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 
-import type { CipherLogger } from "../core/create-cipher-logger";
+import type { CipherLogger } from "../../core/create-cipher-logger";
 
 export type ExpressMiddleware = (
   req: Request,
