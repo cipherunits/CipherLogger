@@ -23,81 +23,61 @@
 
 ---
 
-**Cipher Logger** is a lightweight, production-ready HTTP logging library for Node.js. It captures every request in **Express**, **Next.js**, **React**, **Vue**, and **Nuxt** applications. You decide exactly which fields appear in each log — required fields are always recorded, optional fields are opt-in.
+**Cipher Logger** is a lightweight, production-ready HTTP request logging library for Node.js. It captures every request in your app — **Express**, **Next.js**, and more frameworks on the way — with full control over which fields get logged.
 
-## Table of Contents
-Cipher Logger is a lightweight, production-ready HTTP logging library for Node.js.
+## Highlights
 
-Documentation has moved to Zensical (English). Please see the official docs:
+- **TypeScript-first**, fully typed API
+- **Configurable fields** — required fields always logged, optional fields opt-in
+- **Framework adapters** for Express and Next.js, with more in progress
+- **Zero heavy dependencies** — only your framework as an optional peer dependency
+- **Node.js 18+**
 
-- https://zensical.app/cipherunits/CipherLogger
-
-This README no longer contains the full documentation. For examples, API reference, and guides, visit the Zensical docs link above.
-
-For issues or contributions, see the repository issues tab.
-
-License: MIT
-┌─────────────────────────────────────────┐
-│                  Core                    │
-│   fields config → buildRequestLog        │
-└──────────────────┬──────────────────────┘
-                   │
-         ┌─────────┴─────────┐
-         ▼                   ▼
-   ┌───────────┐       ┌───────────┐
-   │  Express  │       │  Next.js  │
-   │ middleware│       │ middleware│
-   └───────────┘       └───────────┘
-```
-
----
-
-## Local Development
+## Installation
 
 ```bash
-git clone https://github.com/cipherunits/CipherLogger.git
-cd CipherLogger
-pnpm install
-pnpm run build
+npm install cipher-logger
+# or
+pnpm add cipher-logger
+# or
+yarn add cipher-logger
 ```
 
----
+## Quick Start
+
+```ts
+import { createCipherLogger } from "cipher-logger";
+
+const cipher = createCipherLogger({
+  fields: { ip: true, userAgent: true, query: true },
+  level: "info",
+});
+
+app.use(cipher.express());
+```
+
+## Documentation
+
+Full documentation — configuration reference, framework guides (Express, Next.js, and upcoming adapters), log schema, API reference, and architecture — lives on the docs site:
+
+**[docs.cipherunit.xyz](https://cipherunits.github.io/CipherLogger/)**
 
 ## Contributing
 
-Contributions are welcome and appreciated.
+Contributions are welcome.
 
-### Report a Bug or Request a Feature
-
-1. Check [Issues](https://github.com/cipherunits/CipherLogger/issues) first
-2. If no existing issue matches, open a new one with a clear description
-
-### Submit a Pull Request
-
-1. Fork the repository
-2. Create a branch: `git checkout -b feature/my-feature`
-3. Commit your changes: `git commit -m "feat: add something useful"`
-4. Push the branch: `git push origin feature/my-feature`
+1. Check [open issues](https://github.com/cipherunits/CipherLogger/issues) before opening a new one
+2. Fork the repo and create a branch: `git checkout -b feature/my-feature`
+3. Follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages
+4. Run `pnpm run build` before submitting
 5. Open a Pull Request
 
-### Guidelines
-
-- Use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages
-- Run `pnpm run build` before submitting a PR
-- Keep changes focused and scoped
-- Update the README for any API changes
-
-### Contact
-
-- **GitHub Issues:** [cipherunits/CipherLogger/issues](https://github.com/cipherunits/CipherLogger/issues)
-- **Organization:** [CipherUnits](https://github.com/cipherunits)
-
----
+See the [full contributing guide](https://docs.cipherunit.xyz/contributing) on the docs site for details.
 
 ## License
 
-[MIT](./LICENSE) © Cipher Unit
+[BSD-3-Clause](./LICENSE) © [Cipher Unit](https://cipherunit.xyz)
 
 <p align="center" style="margin-top: 100px;">
-  <b><i>Made with ❤️  for developers by CipherUnit</i></b>
+  <b><i>Made with ❤️  for developers by CipherUnits</i></b>
 </p>

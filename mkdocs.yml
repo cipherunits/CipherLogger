@@ -1,0 +1,107 @@
+# Project information
+site_name: CipherLogger
+site_url: https://cipherunits.github.io/CipherLogger/
+site_author: Cipher-Unit
+site_description: >-
+  CipherLogger is a lightweight, production-ready HTTP request logging
+  library for Node.js — Express, Next.js and more, with full control over
+  which fields get logged.
+
+# Repository
+repo_name: cipherunits/CipherLogger
+repo_url: https://github.com/cipherunits/CipherLogger
+edit_uri: edit/main/docs/docs/
+
+# Copyright
+copyright: Copyright © 2026 Cipher-Unit
+
+# Configuration
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Fira Code
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - toc.follow
+
+# Plugins
+plugins:
+  - search
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - tables
+  - toc:
+      permalink: true
+
+# Social links
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/cipherunits/CipherLogger
+    - icon: fontawesome/brands/npm
+      link: https://www.npmjs.com/package/cipher-logger
+    - icon: fontawesome/solid/globe
+      link: https://cipherunit.xyz
+
+# Navigation
+nav:
+  - Home: index.md
+  - Get Started:
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quick-start.md
+  - Guide:
+      - Configuration: guide/configuration.md
+      - Express: guide/express.md
+      - Next.js: guide/nextjs.md
+  - Reference:
+      - API Reference: reference/api.md
+      - Log Schema: reference/log-schema.md
+  - Advanced:
+      - Architecture: advanced/architecture.md
+      - Roadmap: advanced/roadmap.md
+  - FAQ: faq.md

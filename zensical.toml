@@ -9,6 +9,7 @@ copyright = "Copyright &copy; 2026 Cipher Unit"
 
 repo_url = "https://github.com/cipherunits/CipherLogger"
 repo_name = "cipherunits/CipherLogger"
+edit_uri = "edit/main/docs/docs/"
 
 docs_dir = "docs"
 site_dir = "site"
@@ -30,10 +31,18 @@ features = [
     "navigation.top",
     "navigation.tracking",
     "search.highlight",
+    "search.suggest",
     "toc.follow",
 ]
 
 language = "en"
+
+[project.theme]
+logo = "assets/logo.png"
+favicon = "assets/logo.png"
+icon.repo = "fontawesome/brands/github"
+font.text = "Roboto"
+font.code = "Fira Code"
 
 [[project.theme.palette]]
 scheme = "default"
@@ -81,10 +90,41 @@ combine_header_slug = true
 custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
 
+[project.plugins.search]
+
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
 link = "https://github.com/cipherunits/CipherLogger"
 
 [[project.extra.social]]
+icon = "fontawesome/brands/npm"
+link = "https://www.npmjs.com/package/cipher-logger"
+
+[[project.extra.social]]
 icon = "fontawesome/solid/globe"
 link = "https://cipherunit.xyz"
+
+# -----------------------------------------------------------------------------
+# Navigation
+# -----------------------------------------------------------------------------
+nav = [
+    { "Home" = "index.md" },
+    { "Get Started" = [
+        { "Installation" = "getting-started/installation.md" },
+        { "Quick Start" = "getting-started/quick-start.md" },
+    ] },
+    { "Guide" = [
+        { "Configuration" = "guide/configuration.md" },
+        { "Express" = "guide/express.md" },
+        { "Next.js" = "guide/nextjs.md" },
+    ] },
+    { "Reference" = [
+        { "API Reference" = "reference/api.md" },
+        { "Log Schema" = "reference/log-schema.md" },
+    ] },
+    { "Advanced" = [
+        { "Architecture" = "advanced/architecture.md" },
+        { "Roadmap" = "advanced/roadmap.md" },
+    ] },
+    { "FAQ" = "faq.md" },
+]
