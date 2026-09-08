@@ -38,8 +38,8 @@ features = [
 language = "en"
 
 [project.theme]
-logo = "assets/logo.png"
-favicon = "assets/logo.png"
+logo = "assets/cipherlogger_logo_mono.png"
+favicon = "assets/cipherlogger_logo_mono.png"
 icon.repo = "fontawesome/brands/github"
 font.text = "Roboto"
 font.code = "Fira Code"

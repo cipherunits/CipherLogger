@@ -1,6 +1,6 @@
 {
   "name": "cipher-logger",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "See every request. Capture every error. Understand your application.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
