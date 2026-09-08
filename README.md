@@ -23,7 +23,7 @@
 
 ---
 
-**Cipher Logger** is a lightweight, production-ready HTTP logging library for Node.js. It captures every request in **Express** and **Next.js** applications. You decide exactly which fields appear in each log — required fields are always recorded, optional fields are opt-in.
+**Cipher Logger** is a lightweight, production-ready HTTP logging library for Node.js. It captures every request in **Express**, **Next.js**, **React**, **Vue**, and **Nuxt** applications. You decide exactly which fields appear in each log — required fields are always recorded, optional fields are opt-in.
 
 ## Table of Contents
 
@@ -48,11 +48,11 @@
 - **Configurable fields** — fine-grained control over optional log fields
 - **Express middleware** — records real `status` and `duration` after the response finishes
 - **Next.js middleware** — drop-in support for `middleware.ts`
-- **Zero heavy dependencies** — only `express` or `next` as optional peer dependencies
- - **Fastify middleware** — lightweight hook-compatible middleware for Fastify
- - **NestJS middleware** — Express-compatible middleware for Nest apps
- - **Hono middleware** — edge-friendly middleware for Hono apps
- - **Zero heavy dependencies** — only framework peers are optional
+- **React**, **Vue**, and **Nuxt** support — modern app stacks alongside the server frameworks
+- **Zero heavy dependencies** — only framework peers are optional
+- **Fastify middleware** — lightweight hook-compatible middleware for Fastify
+- **NestJS middleware** — Express-compatible middleware for Nest apps
+- **Hono middleware** — edge-friendly middleware for Hono apps
 - **Node.js 18+** compatible
 
 ---
@@ -77,6 +77,15 @@ npm install express
 
 # Next.js
 npm install next
+
+# React
+npm install react
+
+# Vue
+npm install vue
+
+# Nuxt
+npm install nuxt
 
 # Fastify
 npm install fastify

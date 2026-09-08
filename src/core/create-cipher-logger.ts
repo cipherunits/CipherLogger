@@ -3,6 +3,9 @@ import { createNextMiddleware } from "../adapters/next/middleware";
 import { createFastifyMiddleware } from "../adapters/fastify/middleware";
 import { createNestMiddleware } from "../adapters/nest/middleware";
 import { createHonoMiddleware } from "../adapters/hono/middleware";
+import { createReactMiddleware } from "../adapters/react/middleware";
+import { createVueMiddleware } from "../adapters/vue/middleware";
+import { createNuxtMiddleware } from "../adapters/nuxt/middleware";
 import { Logger } from "./logger";
 import { buildRequestLog, resolveFieldConfig } from "./build-request-log";
 import type {
@@ -15,11 +18,17 @@ import type { NextMiddleware } from "../adapters/next/middleware";
 import type { FastifyMiddleware } from "../adapters/fastify/middleware";
 import type { NestMiddleware } from "../adapters/nest/middleware";
 import type { HonoMiddleware } from "../adapters/hono/middleware";
+import type { ReactMiddleware } from "../adapters/react/middleware";
+import type { VueMiddleware } from "../adapters/vue/middleware";
+import type { NuxtMiddleware } from "../adapters/nuxt/middleware";
 
 export interface CipherLogger {
   logRequest(input: RequestLogInput): RequestLog;
   express(): ExpressMiddleware;
   next(): NextMiddleware;
+  react(): ReactMiddleware;
+  vue(): VueMiddleware;
+  nuxt(): NuxtMiddleware;
   fastify(): FastifyMiddleware;
   nest(): NestMiddleware;
   hono(): HonoMiddleware;
@@ -47,6 +56,15 @@ export function createCipherLogger(
 
     next() {
       return createNextMiddleware(cipherLogger);
+    },
+    react() {
+      return createReactMiddleware(cipherLogger);
+    },
+    vue() {
+      return createVueMiddleware(cipherLogger);
+    },
+    nuxt() {
+      return createNuxtMiddleware(cipherLogger);
     },
     fastify() {
       return createFastifyMiddleware(cipherLogger);
