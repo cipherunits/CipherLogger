@@ -17,12 +17,6 @@ importers:
       nuxt:
         specifier: '>=3'
         version: 4.5.2(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7(supports-color@7.2.0)))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.7(supports-color@7.2.0)))(@oxc-project/types@0.148.0)(@types/node@26.4.0)(@vue/compiler-sfc@3.5.42)(cac@6.7.14)(db0@0.3.4)(esbuild@0.27.7)(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(ioredis@5.11.1(supports-color@7.2.0))(lightningcss@1.33.0)(magicast@0.5.4)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.2.7)(rollup-plugin-visualizer@7.1.1(rolldown@1.2.7)(rollup@4.63.1))(rollup@4.63.1)(srvx@0.11.22)(supports-color@7.2.0)(terser@5.51.2)(tsx@4.23.13)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.27.7)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.13))
-      react:
-        specifier: '>=18'
-        version: 19.2.8
-      vue:
-        specifier: '>=3'
-        version: 3.5.42(typescript@6.0.3)
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.1.0
@@ -6569,8 +6563,7 @@ snapshots:
 
   '@pinojs/redact@0.4.0': {}
 
-  '@pkgjs/parseargs@0.11.0':
-    optional: true
+  '@pkgjs/parseargs@0.11.0': {}
 
   '@polka/url@1.0.0-next.29': {}
 
@@ -6586,50 +6579,35 @@ snapshots:
 
   '@poppinss/exception@1.2.3': {}
 
-  '@rolldown/binding-android-arm-eabi@1.2.7':
-    optional: true
+  '@rolldown/binding-android-arm-eabi@1.2.7': {}
 
-  '@rolldown/binding-android-arm64@1.2.7':
-    optional: true
+  '@rolldown/binding-android-arm64@1.2.7': {}
 
-  '@rolldown/binding-darwin-arm64@1.2.7':
-    optional: true
+  '@rolldown/binding-darwin-arm64@1.2.7': {}
 
-  '@rolldown/binding-darwin-x64@1.2.7':
-    optional: true
+  '@rolldown/binding-darwin-x64@1.2.7': {}
 
-  '@rolldown/binding-freebsd-x64@1.2.7':
-    optional: true
+  '@rolldown/binding-freebsd-x64@1.2.7': {}
 
-  '@rolldown/binding-linux-arm-gnueabihf@1.2.7':
-    optional: true
+  '@rolldown/binding-linux-arm-gnueabihf@1.2.7': {}
 
-  '@rolldown/binding-linux-arm64-gnu@1.2.7':
-    optional: true
+  '@rolldown/binding-linux-arm64-gnu@1.2.7': {}
 
-  '@rolldown/binding-linux-arm64-musl@1.2.7':
-    optional: true
+  '@rolldown/binding-linux-arm64-musl@1.2.7': {}
 
-  '@rolldown/binding-linux-ppc64-gnu@1.2.7':
-    optional: true
+  '@rolldown/binding-linux-ppc64-gnu@1.2.7': {}
 
-  '@rolldown/binding-linux-s390x-gnu@1.2.7':
-    optional: true
+  '@rolldown/binding-linux-s390x-gnu@1.2.7': {}
 
-  '@rolldown/binding-linux-x64-gnu@1.2.7':
-    optional: true
+  '@rolldown/binding-linux-x64-gnu@1.2.7': {}
 
-  '@rolldown/binding-linux-x64-musl@1.2.7':
-    optional: true
+  '@rolldown/binding-linux-x64-musl@1.2.7': {}
 
-  '@rolldown/binding-openharmony-arm64@1.2.7':
-    optional: true
+  '@rolldown/binding-openharmony-arm64@1.2.7': {}
 
-  '@rolldown/binding-win32-arm64-msvc@1.2.7':
-    optional: true
+  '@rolldown/binding-win32-arm64-msvc@1.2.7': {}
 
-  '@rolldown/binding-win32-x64-msvc@1.2.7':
-    optional: true
+  '@rolldown/binding-win32-x64-msvc@1.2.7': {}
 
   '@rolldown/pluginutils@1.0.1': {}
 
@@ -9079,38 +9057,27 @@ snapshots:
       process-warning: 3.0.0
       set-cookie-parser: 2.7.2
 
-  lightningcss-android-arm64@1.33.0:
-    optional: true
+  lightningcss-android-arm64@1.33.0: {}
 
-  lightningcss-darwin-arm64@1.33.0:
-    optional: true
+  lightningcss-darwin-arm64@1.33.0: {}
 
-  lightningcss-darwin-x64@1.33.0:
-    optional: true
+  lightningcss-darwin-x64@1.33.0: {}
 
-  lightningcss-freebsd-x64@1.33.0:
-    optional: true
+  lightningcss-freebsd-x64@1.33.0: {}
 
-  lightningcss-linux-arm-gnueabihf@1.33.0:
-    optional: true
+  lightningcss-linux-arm-gnueabihf@1.33.0: {}
 
-  lightningcss-linux-arm64-gnu@1.33.0:
-    optional: true
+  lightningcss-linux-arm64-gnu@1.33.0: {}
 
-  lightningcss-linux-arm64-musl@1.33.0:
-    optional: true
+  lightningcss-linux-arm64-musl@1.33.0: {}
 
-  lightningcss-linux-x64-gnu@1.33.0:
-    optional: true
+  lightningcss-linux-x64-gnu@1.33.0: {}
 
-  lightningcss-linux-x64-musl@1.33.0:
-    optional: true
+  lightningcss-linux-x64-musl@1.33.0: {}
 
-  lightningcss-win32-arm64-msvc@1.33.0:
-    optional: true
+  lightningcss-win32-arm64-msvc@1.33.0: {}
 
-  lightningcss-win32-x64-msvc@1.33.0:
-    optional: true
+  lightningcss-win32-x64-msvc@1.33.0: {}
 
   lightningcss@1.33.0:
     dependencies:

@@ -43,6 +43,7 @@ export function createNextMiddleware(cipher: CipherLogger): NextMiddleware {
       host: getHeader(request, "host"),
       query: parseQuery(request),
       requestId: getHeader(request, "x-request-id"),
+      metadata: { source: "middleware", accurate: false },
     });
 
     return response;

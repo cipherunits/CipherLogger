@@ -1,0 +1,9 @@
+
+[project]
+name = "CipherLogger"
+owner = "cipherunits"
+url = "https://zensical.app/cipherunits/CipherLogger"
+
+[settings]
+language = "en"
+source = "https://github.com/cipherunits/CipherLogger"

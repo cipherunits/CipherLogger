@@ -7,7 +7,7 @@ export type NuxtRequest = {
 };
 
 export type NuxtResponse = {
-  status?: number;
+  statusCode?: number;
   end: (...args: unknown[]) => unknown;
 };
 
@@ -51,7 +51,7 @@ export function createNuxtMiddleware(cipher: CipherLogger): NuxtMiddleware {
       cipher.logRequest({
         method: req.method,
         path: url.pathname + url.search,
-        status: res.status ?? 200,
+        status: res.statusCode ?? 200,
         duration: Date.now() - start,
         ip:
           getHeader(req, "x-forwarded-for")?.split(",")[0]?.trim() ??
