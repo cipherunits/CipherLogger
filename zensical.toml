@@ -9,7 +9,7 @@ copyright = "Copyright &copy; 2026 Cipher Unit"
 
 repo_url = "https://github.com/cipherunits/CipherLogger"
 repo_name = "cipherunits/CipherLogger"
-edit_uri = "edit/main/docs/docs/"
+edit_uri = "edit/main/docs/"
 
 docs_dir = "docs"
 site_dir = "site"
@@ -38,8 +38,8 @@ features = [
 language = "en"
 
 [project.theme]
-logo = "assets/cipherlogger_logo_mono.png"
-favicon = "assets/cipherlogger_logo_mono.png"
+logo = "assets/cipherlogger_logo_mono.svg"
+favicon = "assets/cipherlogger_logo_mono.svg"
 icon.repo = "fontawesome/brands/github"
 font.text = "Roboto"
 font.code = "Fira Code"
