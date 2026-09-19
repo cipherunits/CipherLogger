@@ -1,5 +1,7 @@
 node_modules/
 dist/
+site/
+.venv-docs/
 *.tsbuildinfo
 *.tgz
 .env

@@ -10,7 +10,7 @@ site_description: >-
 # Repository
 repo_name: cipherunits/CipherLogger
 repo_url: https://github.com/cipherunits/CipherLogger
-edit_uri: edit/main/docs/docs/
+edit_uri: edit/main/docs/
 
 # Copyright
 copyright: Copyright © 2026 Cipher-Unit
@@ -18,8 +18,8 @@ copyright: Copyright © 2026 Cipher-Unit
 # Configuration
 theme:
   name: material
-  logo: assets/logo.png
-  favicon: assets/logo.png
+  logo: assets/cipherlogger_logo_mono.svg
+  favicon: assets/cipherlogger_logo_mono.svg
   icon:
     repo: fontawesome/brands/github
   palette:
