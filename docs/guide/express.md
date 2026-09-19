@@ -1,10 +1,11 @@
 # Express
 
-`cipher.express()` returns a standard Express middleware. Mount it before your routes so every request passes through it.
+Mount CipherLogger before your routes so every request passes through it. Prefer the typed subpath import, or use `cipher.express()` for the same middleware.
 
 ```ts
 import express from "express";
 import { createCipherLogger } from "cipher-logger";
+import { createExpressMiddleware } from "cipher-logger/express";
 
 const app = express();
 
@@ -20,7 +21,8 @@ const cipher = createCipherLogger({
 });
 
 // Mount before your routes
-app.use(cipher.express());
+app.use(createExpressMiddleware(cipher));
+// or: app.use(cipher.express());
 
 app.get("/users", (req, res) => {
   res.json({ users: [] });

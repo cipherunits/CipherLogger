@@ -5,7 +5,7 @@ import type { CipherLogger } from "../../core/create-cipher-logger";
 export type HonoMiddleware = (
   c: Context,
   next: () => Promise<void>,
-) => Response | Promise<Response>;
+) => void | Promise<void>;
 
 function getHeader(request: any, name: string): string | undefined {
   if (!request) {
@@ -78,7 +78,5 @@ export function createHonoMiddleware(cipher: CipherLogger): HonoMiddleware {
       query: parseQuery(url),
       requestId: getHeader(req, "x-request-id"),
     });
-
-    return (cres as any) ?? new Response(null, { status });
   };
 }

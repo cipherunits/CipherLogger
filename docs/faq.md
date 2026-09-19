@@ -6,7 +6,7 @@ Not really — they solve different problems. Winston and Pino are general-purpo
 
 ## Why is `duration` wrong in my Next.js logs?
 
-This is expected with the current Next.js adapter — see the [timing caveat](guide/nextjs.md#timing-caveat). Middleware runs before your route handler, so the adapter can only measure its own execution time, not the full response. A fix (route-handler wrappers) is on the [Roadmap](advanced/roadmap.md).
+This is expected with `createNextMiddleware` / `cipher.next()` — see the [timing caveat](guide/nextjs.md#timing-caveat). Middleware runs before your route handler. Use [`withCipherLogger`](guide/nextjs.md#accurate-route-handler-logging) on App Router handlers for accurate status/duration.
 
 ## Can I use CipherLogger without Express or Next.js?
 
@@ -22,7 +22,7 @@ Each enabled field does a small amount of extra work per request (header read, q
 
 ## Is CommonJS supported, or only ESM?
 
-Both. CipherLogger ships dual ESM/CJS builds, so `import` and `require` both work out of the box.
+Both. CipherLogger ships dual ESM/CJS builds with an `exports` map, so `import` and `require` both resolve correctly — including subpaths like `cipher-logger/express`.
 
 ## Where do I report a bug or request a framework adapter?
 

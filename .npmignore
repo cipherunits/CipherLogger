@@ -1,10 +1,18 @@
-# Source & tooling (published package only ships dist + docs via "files")
+# Backup ignore list; package.json "files" is the publish allowlist.
 src/
 tsconfig.json
 tsup.config.ts
 pnpm-lock.yaml
 pnpm-workspace.yaml
-CipherScope_Roadmap.md
+eslint.config.mjs
+mkdocs.yml
+zensical.toml
+docs/
+.agents/
+.github/
+.husky/
+assets/
+examples/
 test/
 
 # Local artifacts
@@ -21,4 +29,3 @@ Thumbs.db
 *.swp
 *.swo
 Backups
-examples
