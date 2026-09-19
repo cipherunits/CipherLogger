@@ -22,7 +22,7 @@
 
 ## Peer dependencies
 
-CipherLogger only requires the framework you actually use — everything else stays out of your `node_modules`.
+CipherLogger only requires the framework you actually use — everything else stays out of your `node_modules`. Import the matching subpath (for example `cipher-logger/express`) or call the lazy convenience method (`cipher.express()`).
 
 === "Express"
 
@@ -36,6 +36,12 @@ CipherLogger only requires the framework you actually use — everything else st
     npm install next
     ```
 
+=== "Fastify / Hono / Nest / Nuxt"
+
+    ```bash
+    npm install fastify   # or hono / @nestjs/common / nuxt
+    ```
+
 If you only use the framework-agnostic [`Logger`](../reference/api.md#logger) class, no peer dependency is required at all.
 
 ## Requirements
@@ -43,7 +49,7 @@ If you only use the framework-agnostic [`Logger`](../reference/api.md#logger) cl
 | Requirement | Version |
 | ----------- | ------- |
 | Node.js     | 18 or later |
-| TypeScript  | 5.x (optional — CipherLogger ships its own `.d.ts` files) |
+| TypeScript  | 5.x or 6.x (optional — CipherLogger ships its own `.d.ts` files) |
 | Module system | ESM and CommonJS both supported |
 
 ## Verifying the install
