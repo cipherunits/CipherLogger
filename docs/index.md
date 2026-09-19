@@ -15,7 +15,7 @@ npm install cipher-logger
 
 - :material-tune:{ .lg .middle } **Configurable fields** — required fields are always recorded, optional fields are opt-in
 
-- :material-view-grid-plus:{ .lg .middle } **Framework adapters** — Express and Next.js today, Fastify/Hono/NestJS/Nuxt on the way
+- :material-view-grid-plus:{ .lg .middle } **Framework adapters** — Express, Next.js, Fastify, Hono, NestJS, and Nuxt via subpath exports
 
 - :material-weight-lifter:{ .lg .middle } **Zero heavy dependencies** — only your framework as an optional peer dependency
 
@@ -69,7 +69,7 @@ Ready for more? Follow the [Quick Start guide](getting-started/quick-start.md).
 | ------------------- | ----------------------- | ------------------------------- | ------------------------------------------ |
 | **Schema**           | None — every call differs | Format-defined, not HTTP-aware  | Fixed `RequestLog` shape, HTTP-first        |
 | **Field control**    | Manual, per call         | Global formatter                | Per-field opt-in (`fields` config)          |
-| **Framework wiring** | Manual                   | Separate middleware packages    | Built-in `express()` / `next()` adapters    |
+| **Framework wiring** | Manual                   | Separate middleware packages    | Built-in adapters + `cipher-logger/<framework>` subpaths |
 | **TypeScript**       | N/A                      | Varies                          | Fully typed, exported types for every shape |
 | **Accurate timing**  | Manual                   | Manual                          | Built-in, per-adapter (see [caveats](guide/nextjs.md#timing-caveat)) |
 

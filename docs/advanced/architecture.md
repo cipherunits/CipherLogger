@@ -1,22 +1,25 @@
 # Architecture
 
-CipherLogger is split into a framework-agnostic **core** and thin, per-framework **adapters**. This keeps the dependency footprint small — you only pull in the adapter for the framework you actually use — and keeps the logging logic itself easy to test in isolation.
+CipherLogger is split into a framework-agnostic **core** and thin, per-framework **adapters**. Adapters ship as separate entry points so importing the core package does not load Express, Next.js, or other peers.
 
 ## Package layout
 
 ```text
 cipher-logger/
 ├── src/
-│   ├── core/            # Core — field config & log building
-│   │   ├── logger.ts
-│   │   ├── types.ts
-│   │   ├── build-request-log.ts
-│   │   └── create-cipher-logger.ts
-│   ├── express/          # Express adapter
-│   │   └── middleware.ts
-│   ├── next/             # Next.js adapter
-│   │   └── middleware.ts
-│   └── index.ts           # Public entry point
+│   ├── core/                 # Field config, Logger, createCipherLogger
+│   ├── adapters/
+│   │   ├── express/
+│   │   ├── next/
+│   │   ├── nuxt/
+│   │   ├── fastify/
+│   │   ├── nest/
+│   │   └── hono/
+│   ├── index.ts              # Public core entry
+│   ├── express.ts            # Subpath: cipher-logger/express
+│   ├── next.ts               # Subpath: cipher-logger/next
+│   └── …                     # Other adapter entries
+└── dist/                     # Built CJS + ESM + types
 ```
 
 ## Data flow
@@ -25,22 +28,33 @@ cipher-logger/
 flowchart TB
     A[fields config] --> B[buildRequestLog]
     B --> C{Adapter}
-    C --> D[Express middleware]
+    C --> D[Express / Nest]
     C --> E[Next.js middleware]
-    D --> F[res.finish → accurate status/duration]
-    E --> G[middleware execution → see timing caveat]
+    C --> F[withCipherLogger route handler]
+    C --> G[Fastify / Hono / Nuxt]
+    D --> H[res.finish → accurate status/duration]
+    F --> I[real Response status/duration]
+    E --> J[middleware timing caveat]
 ```
 
-1. **Core** owns the `fields` configuration and `buildRequestLog`, which assembles a `RequestLog` object from raw request/response data and whatever optional fields are enabled.
-2. **Adapters** are responsible only for extracting framework-specific data (headers, timing hooks, request/response objects) and handing it to core in a normalized shape.
-3. Each adapter decides *when* logging happens — Express logs on `res.finish` (after the real response), while the Next.js adapter currently logs during middleware execution (see the [timing caveat](../guide/nextjs.md#timing-caveat)).
+1. **Core** owns `fields` configuration and `buildRequestLog`.
+2. **Adapters** extract framework-specific data and call `cipher.logRequest(...)`.
+3. Convenience methods like `cipher.express()` lazy-load the matching `dist/<adapter>` chunk at call time so unused peers are never required.
 
 ## Why this split?
 
-- **Small surface area per adapter.** Adding a new framework (Fastify, Hono, NestJS, Nuxt — see the [Roadmap](roadmap.md)) means writing a thin file that maps that framework's request lifecycle onto core, not reimplementing field logic.
-- **Zero unnecessary dependencies.** `express` and `next` are optional peer dependencies — installing CipherLogger doesn't pull in either unless you import that adapter.
-- **Testable core.** `buildRequestLog` and `Logger` have no framework dependencies, so they're covered by plain unit tests independent of any HTTP server.
+- **Small surface area per adapter.** Adding a framework means a thin adapter file plus a subpath entry.
+- **Optional peers stay optional.** `require("cipher-logger")` / `import "cipher-logger"` does not load `next` or `express`.
+- **Typed imports when you need them.** Prefer `import { createExpressMiddleware } from "cipher-logger/express"` for full framework types.
 
-## Public entry point
+## Public entry points
 
-`src/index.ts` re-exports everything documented in the [API Reference](../reference/api.md): `createCipherLogger`, `Logger`, and every public type. Adapters are not imported eagerly — `cipher.express()` and `cipher.next()` are resolved lazily so that, for example, requiring `next` doesn't happen in a pure-Express project.
+| Import | Contents |
+| ------ | -------- |
+| `cipher-logger` | `createCipherLogger`, `Logger`, core types |
+| `cipher-logger/express` | `createExpressMiddleware` |
+| `cipher-logger/next` | `createNextMiddleware`, `withCipherLogger` |
+| `cipher-logger/fastify` | `createFastifyMiddleware` |
+| `cipher-logger/hono` | `createHonoMiddleware` |
+| `cipher-logger/nest` | `createNestMiddleware` |
+| `cipher-logger/nuxt` | `createNuxtMiddleware` |

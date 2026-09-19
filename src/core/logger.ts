@@ -48,27 +48,35 @@ export class Logger {
 
     switch (level) {
       case "error":
-        meta
-          ? console.error(output, meta)
-          : console.error(output);
+        if (meta) {
+          console.error(output, meta);
+        } else {
+          console.error(output);
+        }
         break;
 
       case "warn":
-        meta
-          ? console.warn(output, meta)
-          : console.warn(output);
+        if (meta) {
+          console.warn(output, meta);
+        } else {
+          console.warn(output);
+        }
         break;
 
       case "debug":
-        meta
-          ? console.debug(output, meta)
-          : console.debug(output);
+        if (meta) {
+          console.debug(output, meta);
+        } else {
+          console.debug(output);
+        }
         break;
 
       case "info":
-        meta
-          ? console.info(output, meta)
-          : console.info(output);
+        if (meta) {
+          console.info(output, meta);
+        } else {
+          console.info(output);
+        }
         break;
     }
   }

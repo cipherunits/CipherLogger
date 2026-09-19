@@ -17,15 +17,21 @@ const cipher = createCipherLogger(config);
 | Method                     | Description                              |
 | --------------------------- | ----------------------------------------- |
 | `cipher.logRequest(input)`  | Manually log an HTTP request              |
-| `cipher.express()`          | Returns an Express middleware             |
-| `cipher.next()`             | Returns a Next.js middleware              |
+| `cipher.express()`          | Lazy-loads Express middleware             |
+| `cipher.next()`             | Lazy-loads Next.js middleware             |
+| `cipher.fastify()`          | Lazy-loads Fastify middleware             |
+| `cipher.hono()`             | Lazy-loads Hono middleware                |
+| `cipher.nest()`             | Lazy-loads Nest (Express-style) middleware |
+| `cipher.nuxt()`             | Lazy-loads Nuxt middleware                |
 
-#### `cipher.logRequest(input: RequestLogInput): void`
+For **fully typed** adapters, prefer the subpath imports (for example `cipher-logger/express`) instead of the convenience methods.
 
-Logs a single HTTP request. Useful when you're not going through a supported framework adapter, or when you want to log a request from inside a route handler with final, accurate values.
+#### `cipher.logRequest(input: RequestLogInput): RequestLog`
+
+Logs a single HTTP request and returns the resolved `RequestLog`. Useful when you're not going through a supported framework adapter, or when you want to log a request from inside a route handler with final, accurate values.
 
 ```ts
-cipher.logRequest({
+const log = cipher.logRequest({
   method: "POST",
   path: "/orders",
   status: 201,
@@ -35,13 +41,24 @@ cipher.logRequest({
 
 `RequestLogInput` accepts the [required fields](log-schema.md#required-fields) plus any [optional fields](log-schema.md#optional-fields) you've enabled in `fields`.
 
-#### `cipher.express(): ExpressMiddleware`
+#### `cipher.express()` / subpath
 
-Returns middleware compatible with `app.use()`. Records `status` and `duration` on `res.finish`. See the [Express guide](../guide/express.md).
+```ts
+import { createExpressMiddleware } from "cipher-logger/express";
 
-#### `cipher.next(): NextMiddleware`
+app.use(createExpressMiddleware(cipher));
+// equivalent: app.use(cipher.express());
+```
 
-Returns a function compatible with a Next.js `middleware.ts` default export. See the [Next.js guide](../guide/nextjs.md) — including the current [timing caveat](../guide/nextjs.md#timing-caveat).
+Records `status` and `duration` on `res.finish`. See the [Express guide](../guide/express.md).
+
+#### `cipher.next()` / subpath
+
+```ts
+import { createNextMiddleware, withCipherLogger } from "cipher-logger/next";
+```
+
+See the [Next.js guide](../guide/nextjs.md) — including the [timing caveat](../guide/nextjs.md#timing-caveat) and accurate route-handler wrapping.
 
 ---
 
@@ -86,7 +103,7 @@ Each method accepts a `message: string` and an optional `meta: Record<string, un
 
 ## TypeScript exports
 
-Every public shape is exported so you can type your own wrappers, tests, or downstream consumers:
+Core types from the main entry:
 
 ```ts
 import type {
@@ -97,9 +114,14 @@ import type {
   OptionalRequestField,
   LogLevel,
   LoggerOptions,
-  ExpressMiddleware,
-  NextMiddleware,
 } from "cipher-logger";
+```
+
+Framework middleware types from subpaths:
+
+```ts
+import type { ExpressMiddleware } from "cipher-logger/express";
+import type { NextMiddleware, RouteHandler } from "cipher-logger/next";
 ```
 
 | Type                     | Description                                              |
@@ -111,7 +133,5 @@ import type {
 | `OptionalRequestField`    | Union of all keys valid inside `fields`                    |
 | `LogLevel`                | `"debug" \| "info" \| "warn" \| "error"`                   |
 | `LoggerOptions`           | Constructor options for `Logger`                            |
-| `ExpressMiddleware`       | Return type of `cipher.express()`                           |
-| `NextMiddleware`          | Return type of `cipher.next()`                               |
 
 See [Log Schema](log-schema.md) for the field-by-field breakdown of `RequestLog`.
